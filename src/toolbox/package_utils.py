@@ -6,9 +6,9 @@ import aiohttp
 from rich.markdown import Markdown
 from rich.prompt import Confirm
 from rich.status import Status
-from shared import about, api, version
 
 from .misc_utils import make_panel
+from .shared_utils import about, api, version
 from .terminal_utils import console
 
 __all__ = [

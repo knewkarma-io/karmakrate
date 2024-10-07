@@ -3,7 +3,8 @@ from platform import python_version, platform
 
 from api import Api, SORT_CRITERION, TIMEFRAME, TIME_FORMAT
 from knewkarma.meta import about, version
-from toolbox.terminal_utils import Message, Style
+
+from .terminal_utils import Message, Style
 
 __all__ = [
     "about",

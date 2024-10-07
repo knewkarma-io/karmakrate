@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "toolbox"
+version = "0.1.0"
+description = "Toolbox component for Knew Karma"
+authors = ["Richard Mwewa <rly0nheart@duck.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+api = { git = "https://github.com/knewkarma-io/api.git", branch = "master" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

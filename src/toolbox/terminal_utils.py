@@ -1,6 +1,8 @@
 from rich.console import Console
 
-__all__ = ["Notify", "Style"]
+__all__ = ["console", "Message", "Style"]
+
+console = Console(log_time=False)
 
 
 class Style:
@@ -32,55 +34,57 @@ class Style:
     reset: str = "[/]"
 
 
-class Notify:
+class Message:
     """
-    Provides methods for printing and/or logging formatted notifications to the console.
+    Provides static methods for printing and/or logging formatted notifications to the console.
     """
 
-    def __init__(self, console: Console):
-        self._console = console
-
-    def ok(self, message: str):
+    @staticmethod
+    def ok(text: str):
         """
         Prints a `success` message (with a checkmark).
 
-        :param message: Message to be logged.
-        :type message: str
+        :param text: Text to be logged.
+        :type text: str
         """
 
-        self._console.print(f"{Style.green}✔{Style.reset} {message}")
+        console.print(f"{Style.green}✔{Style.reset} {message}")
 
-    def info(self, message: str):
+    @staticmethod
+    def info(text: str):
         """
         Prints an `informational` message to the console.
 
-        :param message: Message to be logged.
-        :type message: str
+        :param text: Text to be logged.
+        :type text: str
         """
 
-        self._console.print(f"{Style.green}✱{Style.reset} {message}")
+        console.print(f"{Style.green}✱{Style.reset} {message}")
 
-    def warning(self, message: str):
+    @staticmethod
+    def warning(text: str):
         """
         Prints a `warning` message to the console.
 
-        :param message: Message to be logged.
-        :type message: str
+        :param text: Text to be logged.
+        :type text: str
         """
 
-        self._console.print(f"{Style.yellow}✘{Style.reset} {message}")
+        console.print(f"{Style.yellow}✘{Style.reset} {message}")
 
-    def error(self, message: str):
+    @staticmethod
+    def error(text: str):
         """
         Logs an error with the specified message to the console.
 
-        :param message: Error message to be logged.
-        :type message: str
+        :param text: Error message to be logged.
+        :type text: str
         """
 
-        self._console.log(f"{Style.yellow}✘{Style.reset} {message}")
+        console.log(f"{Style.yellow}✘{Style.reset} {message}")
 
-    def exception(self, error: Exception, title: str = "An unexpected error occurred"):
+    @staticmethod
+    def exception(error: Exception, title: str = "An unexpected error occurred"):
         """
         Logs an exception message to the console.
 
@@ -90,7 +94,7 @@ class Notify:
         :type error: Exception
         """
 
-        self._console.log(f"{Style.red}✘{Style.reset} {title}: {error}")
+        console.log(f"{Style.red}✘{Style.reset} {title}: {error}")
 
 
 # -------------------------------- END ----------------------------------------- #

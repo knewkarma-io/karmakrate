@@ -6,7 +6,7 @@ from rich.box import DOUBLE
 from rich.console import ConsoleRenderable, RichCast
 from rich.panel import Panel
 
-from .shared import console, notify
+from .terminal_utils import console
 
 __all__ = [
     "filename_timestamp",
@@ -30,7 +30,7 @@ def make_panel(
     :param subtitle: Panel subtitle.
     :type subtitle: str
     """
-    from .terminal import Style
+    from .terminal_utils import Style
 
     console.print(
         Panel(
@@ -83,7 +83,7 @@ def pathfinder(directories: Union[List[str], str]):
         elif isinstance(directories, str):
             os.makedirs(name=directories, exist_ok=True)
     except Exception as unexpected_error:
-        notify.exception(unexpected_error)
+        message.exception(unexpected_error)
 
 
 # -------------------------------- END ----------------------------------------- #

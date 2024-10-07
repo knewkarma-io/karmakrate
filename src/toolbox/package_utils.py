@@ -6,10 +6,10 @@ import aiohttp
 from rich.markdown import Markdown
 from rich.prompt import Confirm
 from rich.status import Status
+from shared import about, api, version
 
-from .miscellaneous import make_panel
-from .shared import api, console, notify, style
-
+from .misc_utils import make_panel
+from .terminal_utils import console
 
 __all__ = [
     "check_for_updates",
@@ -17,6 +17,7 @@ __all__ = [
     "is_snap_package",
     "update_package",
 ]
+
 
 INVALID_PACKAGE_ERROR: str = (
     "The provided package name is not a valid string: {package}"
@@ -36,8 +37,6 @@ async def check_for_updates(
     :param status: An optional `Status` object for displaying status messages.
     :type status: Optional[rich.status.Status]
     """
-
-    from knewkarma.meta import about, version
 
     if status:
         status.update("Checking for updates")

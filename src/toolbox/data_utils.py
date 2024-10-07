@@ -4,7 +4,7 @@ from typing import Union, Literal, List, Tuple, Dict
 
 import pandas as pd
 
-from .shared import notify
+from .terminal_utils import Message
 
 __all__ = [
     "create_dataframe",
@@ -15,6 +15,7 @@ __all__ = [
 ]
 
 EXPORT_FORMATS = Literal["csv", "html", "json", "xml"]
+message = Message
 
 try:
     import matplotlib.pyplot as plt
@@ -60,7 +61,7 @@ def plot_bar_chart(
         plt.ylabel(ylabel)
         plt.savefig(f"{filename}.png")
 
-        notify.ok(f"{title} saved to [link file://{filename}.png]{filename}.png")
+        message.ok(f"{title} saved to [link file://{filename}.png]{filename}.png")
 
 
 def create_dataframe(
@@ -146,7 +147,7 @@ def export_dataframe(
                 directory, file_format, f"{filename}.{file_format}"
             )
             file_mapping.get(file_format)()
-            notify.ok(
+            message.ok(
                 f"{get_file_size(file_path=filepath)} written to [link file://{filepath}]{filepath}"
             )
         else:

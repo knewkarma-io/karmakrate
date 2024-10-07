@@ -1,13 +1,12 @@
 import os
 from platform import python_version, platform
 
-from api import Api
-from rich.console import Console
-
-from .terminal import Notify, Style
-from ..meta import about, version
+from api import Api, SORT_CRITERION, TIMEFRAME, TIME_FORMAT
+from knewkarma.meta import about, version
+from toolbox.terminal_utils import Message, Style
 
 __all__ = [
+    "about",
     "api",
     "console",
     "OUTPUT_PARENT_DIR",
@@ -16,6 +15,7 @@ __all__ = [
     "SORT_CRITERION",
     "TIMEFRAME",
     "TIME_FORMAT",
+    "version",
 ]
 
 api = Api(
@@ -25,10 +25,7 @@ api = Api(
     },
 )
 
-console = Console(log_time=False)
-
-notify = Notify(console=console)
+message = Message
 style = Style
 
 OUTPUT_PARENT_DIR: str = os.path.expanduser(os.path.join("~", "knewkarma"))
-ML_MODELS_DIR: str = os.path.join(OUTPUT_PARENT_DIR, "ml_models")

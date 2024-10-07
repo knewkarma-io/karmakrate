@@ -1,6 +1,6 @@
 from rich.console import Console
 
-__all__ = ["console", "Message", "Style"]
+__all__ = ["console", "Notify", "Style"]
 
 console = Console(log_time=False)
 
@@ -34,51 +34,51 @@ class Style:
     reset: str = "[/]"
 
 
-class Message:
+class Notify:
     """
     Provides static methods for printing and/or logging formatted notifications to the console.
     """
 
     @staticmethod
-    def ok(text: str):
+    def ok(message: str):
         """
         Prints a `success` message (with a checkmark).
 
-        :param text: Text to be logged.
-        :type text: str
+        :param message: Message to be logged.
+        :type message: str
         """
 
         console.print(f"{Style.green}✔{Style.reset} {message}")
 
     @staticmethod
-    def info(text: str):
+    def info(message: str):
         """
         Prints an `informational` message to the console.
 
-        :param text: Text to be logged.
-        :type text: str
+        :param message: Message to be logged.
+        :type message: str
         """
 
         console.print(f"{Style.green}✱{Style.reset} {message}")
 
     @staticmethod
-    def warning(text: str):
+    def warning(message: str):
         """
         Prints a `warning` message to the console.
 
-        :param text: Text to be logged.
-        :type text: str
+        :param message: Message to be logged.
+        :type message: str
         """
 
         console.print(f"{Style.yellow}✘{Style.reset} {message}")
 
     @staticmethod
-    def error(text: str):
+    def error(message: str):
         """
         Logs an error with the specified message to the console.
 
-        :param text: Error message to be logged.
-        :type text: str
+        :param message: Error message to be logged.
+        :type message: str
         """
 
         console.log(f"{Style.yellow}✘{Style.reset} {message}")

@@ -8,7 +8,7 @@ from rich.prompt import Confirm
 from rich.status import Status
 
 from .data import Data
-from .shared import console, notify, style
+from .terminal import console, notify, style
 
 __all__ = ["Package"]
 

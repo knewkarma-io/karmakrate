@@ -8,7 +8,7 @@ from rich.box import DOUBLE
 from rich.console import ConsoleRenderable, RichCast
 from rich.panel import Panel
 
-from .shared import console, notify
+from .terminal import console, notify
 
 __all__ = ["Data", "EXPORT_FORMATS", "EXPORTS_PARENT_DIR"]
 

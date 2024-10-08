@@ -1,8 +1,6 @@
 from rich.console import Console
 
-__all__ = ["console", "Notify", "Style"]
-
-console = Console(log_time=False)
+__all__ = ["console", "notify", "style"]
 
 
 class Style:
@@ -96,5 +94,9 @@ class Notify:
 
         console.log(f"{Style.red}✘{Style.reset} {title}: {error}")
 
+
+console = Console(log_time=False)
+notify = Notify()
+style = Style()
 
 # -------------------------------- END ----------------------------------------- #

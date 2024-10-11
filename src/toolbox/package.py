@@ -17,7 +17,7 @@ class Package:
     def __init__(self, name: str, **kwargs):
 
         self._package = name
-        self._version = kwargs.get("version_module")
+        self._version = kwargs.get("version")
         self._send_request = kwargs.get("requester")
         self._invalid_package_error = (
             f"The provided package name is not a valid string: {name}"
@@ -38,7 +38,6 @@ class Package:
         :param status: An optional `Status` object for displaying status messages.
         :type status: Optional[rich.status.Status]
         """
-        version = self._version
 
         if status:
             status.update("Checking for updates")
@@ -55,9 +54,9 @@ class Package:
 
             # Splitting the version strings into components
             local_version_parts = [
-                version.major[0],
-                version.minor[0],
-                version.patch[0],
+                self._version.major[0],
+                self._version.minor[0],
+                self._version.patch[0],
             ]
             remote_version_parts: List = remote_version_str.split(".")
 
@@ -73,13 +72,13 @@ class Package:
 
             # Check for differences in version parts
             if remote_major != local_major:
-                update_level = f"{style.red}{version.major[1]}{style.reset}"
+                update_level = f"{style.red}{self._version.major[1]}{style.reset}"
 
             elif remote_minor != local_minor:
-                update_level = f"{style.yellow}{version.minor[1]}{style.reset}"
+                update_level = f"{style.yellow}{self._version.minor[1]}{style.reset}"
 
             elif remote_patch != local_patch:
-                update_level = f"{style.green}{version.patch[1]}{style.reset}"
+                update_level = f"{style.green}{self._version.patch[1]}{style.reset}"
 
             if update_level:
                 markdown_release_notes = Markdown(markup=markup_release_notes)
@@ -104,7 +103,7 @@ class Package:
                     else:
                         status.start()
             else:
-                notify.ok(message=f"Up-to-date ({version.full})")
+                notify.ok(message=f"Up-to-date ({self._version.full_version})")
 
     @staticmethod
     def is_docker_container() -> bool:
@@ -159,13 +158,13 @@ class Package:
             try:
                 if status:
                     status.start()
-                    status.update("Downloading updates")
+                    status.update("Downloading updates. Please wait")
                 subprocess.run(
                     [
                         "pip",
                         "install",
                         "--upgrade",
-                        self._package,
+                        f"{self._package}[core]",
                     ],
                     check=True,
                     stdout=subprocess.DEVNULL if status else None,

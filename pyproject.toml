@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "toolbox"
-version = "0.2.0"
-description = "Toolbox component for Knew Karma"
+name = "knwkrma-utils"
+version = "1.0.0"
+description = "Utils component for Knew Karma"
 authors = ["Richard Mwewa <rly0nheart@duck.com>"]
-license = "GPL-3.0"
+license = "GPL-3.0+"
 readme = "README.md"
 
 [tool.poetry.dependencies]

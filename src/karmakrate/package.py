@@ -7,7 +7,7 @@ from rich.markdown import Markdown
 from rich.prompt import Confirm
 from rich.status import Status
 
-from .data import Data
+from .miscellaneous import Miscellaneous
 from .terminal import console, notify, style
 
 __all__ = ["Package"]
@@ -82,7 +82,7 @@ class Package:
 
             if update_level:
                 markdown_release_notes = Markdown(markup=markup_release_notes)
-                Data.make_panel(
+                Miscellaneous.make_panel(
                     title=f"{style.bold}{update_level} Update Available ({style.cyan}{remote_version_str}{style.reset}){style.reset}",
                     content=markdown_release_notes,
                     subtitle=f"{style.bold}{style.italic}Thank you, for using Knew Karma!{style.reset}{style.reset} ❤️ ",

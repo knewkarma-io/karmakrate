@@ -10,14 +10,16 @@ from rich.panel import Panel
 
 from .terminal import console, notify
 
-__all__ = ["EXPORT_FORMATS", "EXPORTS_PARENT_DIR", "Miscellaneous"]
+__all__ = ["Miscellaneous"]
 
 
-EXPORT_FORMATS = Literal["csv", "html", "json", "xml"]
-EXPORTS_PARENT_DIR: str = os.path.expanduser(os.path.join("~", "knewkarma"))
 
 
 class Miscellaneous:
+
+    EXPORT_FORMATS = Literal["csv", "html", "json", "xml"]
+    EXPORTS_PARENT_DIR: str = os.path.expanduser(os.path.join("~", "knewkarma"))
+
     @staticmethod
     def is_matplotlib_installed() -> bool:
         try:
